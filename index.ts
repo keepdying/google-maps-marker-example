@@ -14,7 +14,18 @@ function initMap(): void {
       center: myLatLng,
     }
   );
-
+  const markerArray: Array<google.maps.Marker> = [];
+  let data = {lat: null, lng: null}
+  map.addListener('click',function(e) {
+    data.lat = e.latLng.lat();
+    data.lng = e.latLng.lng();
+    markerArray.push(
+      new google.maps.Marker({
+        position: data,
+        map
+      })
+    ); 
+  });
   new google.maps.Marker({
     position: myLatLng,
     map,
